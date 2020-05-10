@@ -1,24 +1,40 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Nav from './Nav';
+import Actions from './Actions';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+      <div className="row">
+        <div className="col">
+           <Nav/>
+    
+           <Actions/>
+
+              
+              <div className="links-list  my-3">
+                <h4 className="display-4">My Links</h4>
+                <ul className="list-group">
+                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
+                    Cras justo odio
+                    <span className="badge badge-primary badge-pill">14</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
+                    Dapibus ac facilisis in
+                    <span className="badge badge-primary badge-pill">2</span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
+                    Morbi leo risus
+                    <span className="badge badge-primary badge-pill">1</span>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
