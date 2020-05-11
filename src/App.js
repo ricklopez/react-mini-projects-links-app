@@ -3,40 +3,50 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './Nav';
 import Actions from './Actions';
+import LinkLists from './ItemList';
 
-function App() {
-  return (
-    <div className="App">
-      <div className="container">
-      <div className="row">
-        <div className="col">
-           <Nav/>
-    
-           <Actions/>
-
-              
-              <div className="links-list  my-3">
-                <h4 className="display-4">My Links</h4>
-                <ul className="list-group">
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Cras justo odio
-                    <span className="badge badge-primary badge-pill">14</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Dapibus ac facilisis in
-                    <span className="badge badge-primary badge-pill">2</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Morbi leo risus
-                    <span className="badge badge-primary badge-pill">1</span>
-                  </li>
-                </ul>
+class App extends React.Component {
+  
+  constructor(props){
+    super(props);
+    this.state = { // this changes => rerender
+      time: Date.now(),
+      navLinks: ['Link 1', 'Link 2', 'Link 3'],
+      linkItems: [],
+      
+    }
+  }
+  
+  
+  componentDidMount(){
+    fetch('https://5eb88da0bb17460016b32946.mockapi.io/links')
+      .then(response => response.json())
+      .then(data => {
+      this.setState({linkItems:data});
+    });
+  }
+  
+  
+  
+  render(){
+      return (
+        <div className="App">
+          <div className="container">
+          <div className="row">
+            <div className="col">
+               <Nav time={this.state.time } links={this.state.navLinks} />
+               <Actions/>
+                  <div className="links-list  my-3">
+                    <LinkLists items={this.state.linkItems}/>
+                  </div>
               </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+      );
+    
+  }
+
 }
 
 export default App;
