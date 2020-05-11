@@ -7,8 +7,30 @@ import Actions from './Actions';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = {
+      date: Date.now(),
+      navlinks: [],
+      links: [],
+    };
   }
+  
+  
+  componentDidMount() {
+    this.setState({navlinks: ['link 1', 'link 2', 'link 3', 'link 4']});
+    // after element are in the DOM
+    fetch('https://5eb88da0bb17460016b32946.mockapi.io/links')
+      .then(response => response.json())
+      .then(data => {
+      console.log(this.state);
+      this.setState({links: data}, function(){
+        console.log(this.state);
+      });
+      console.log(this.state);
+      
+    })
+  }
+  
+
   
   render(){
     
@@ -17,24 +39,11 @@ class App extends React.Component {
         <div className="container">
         <div className="row">
           <div className="col">
-             <Nav time={Date.now()}/>
+             <Nav time={this.state.date} links={this.state.navlinks}/>
              <Actions/>
                 <div className="links-list  my-3">
-                  <h4 className="display-4">My Links</h4>
-                  <ul className="list-group">
-                    <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                      Cras justo odio
-                      <span className="badge badge-primary badge-pill">14</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                      Dapibus ac facilisis in
-                      <span className="badge badge-primary badge-pill">2</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                      Morbi leo risus
-                      <span className="badge badge-primary badge-pill">1</span>
-                    </li>
-                  </ul>
+                  <LinkList items={this.state.navlinks}/>
+                  
                 </div>
             </div>
           </div>

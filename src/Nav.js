@@ -1,21 +1,17 @@
 import React from 'react';
 
 function Nav(props) {
+  const links = props.links.map(() => {
+    return (
+      <li className="nav-item">
+          <a className="nav-link active" href="#">Active</a>
+        </li>
+    );
+  });
   return (
     <div className="nav my-3">
       <ul className="nav mx-auto">
-        <li className="nav-item">
-          <a className="nav-link active" href="#">Active</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" href="#">{props.time}</a>
-        </li>
+        {links}
       </ul>
     </div>
   );
