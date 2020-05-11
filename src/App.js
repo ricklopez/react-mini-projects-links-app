@@ -10,11 +10,8 @@ function App() {
       <div className="container">
       <div className="row">
         <div className="col">
-           <Nav/>
-    
+           <Nav time={Date.now()}/>
            <Actions/>
-
-              
               <div className="links-list  my-3">
                 <h4 className="display-4">My Links</h4>
                 <ul className="list-group">

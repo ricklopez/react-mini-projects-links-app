@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Nav() {
+function Nav(props) {
   return (
     <div className="nav my-3">
       <ul className="nav mx-auto">
@@ -14,7 +14,7 @@ function Nav() {
           <a className="nav-link" href="#">Link</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link disabled" href="#">Disabled</a>
+          <a className="nav-link disabled" href="#">{props.time}</a>
         </li>
       </ul>
     </div>
