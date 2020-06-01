@@ -3,40 +3,69 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './Nav';
 import Actions from './Actions';
+import ItemList from './ItemList';
+import AddLinkForm from './AddLinkForm';
 
-function App() {
-  return (
+class App extends React.Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      links : [],
+      displayForm: false,
+    };
+    
+    //this.onClick = this.onClick.bind(this);
+    
+  }
+  
+  
+  componentDidMount(){
+    fetch('//5eb88da0bb17460016b32946.mockapi.io/links')
+      .then(response => response.json())
+      .then(data => {
+        console.log("Line 24: ", this.state);
+        this.setState({ links : data }, () => { 
+          console.log("Line 25: ", this.state);
+        });
+    });
+  }
+  
+  actionUI(){
+    if(this.state.displayForm){
+      return(    
+         <AddLinkForm/>
+      );
+    }
+    return(
+      <Actions onClick={this.onClick.bind(this)}/>   
+    );
+  }
+  
+  onClick(e) {
+    this.setState({displayForm: true});
+  }
+    
+  
+  render() {
+    return (
     <div className="App">
       <div className="container">
-      <div className="row">
-        <div className="col">
+        <div className="row">
+          <div className="col">
            <Nav/>
-    
-           <Actions/>
-
-              
-              <div className="links-list  my-3">
-                <h4 className="display-4">My Links</h4>
-                <ul className="list-group">
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Cras justo odio
-                    <span className="badge badge-primary badge-pill">14</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Dapibus ac facilisis in
-                    <span className="badge badge-primary badge-pill">2</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center link-item">
-                    Morbi leo risus
-                    <span className="badge badge-primary badge-pill">1</span>
-                  </li>
-                </ul>
-              </div>
+           {this.actionUI()}
+           
+           <ItemList items={this.state.links}/>
           </div>
         </div>
       </div>
     </div>
   );
+    
+  }
+  
+  
 }
 
 export default App;
