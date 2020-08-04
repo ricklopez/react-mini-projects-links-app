@@ -21,7 +21,8 @@ class App extends React.Component {
   
   
   componentDidMount(){
-    fetch('//5eb88da0bb17460016b32946.mockapi.io/links')
+    //
+    fetch(process.env.REACT_APP_API_URL)
       .then(response => response.json())
       .then(data => {
         console.log("Line 24: ", this.state);
