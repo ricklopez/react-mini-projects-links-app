@@ -5,6 +5,8 @@ import Nav from './Nav';
 import Actions from './Actions';
 import ItemList from './ItemList';
 import AddLinkForm from './AddLinkForm';
+import env from './config';
+import Fuse from 'fuse.js';
 
 class App extends React.Component {
   
@@ -22,7 +24,7 @@ class App extends React.Component {
   
   componentDidMount(){
     //
-    fetch(process.env.REACT_APP_API_URL)
+    fetch(env.ENDPOINT)
       .then(response => response.json())
       .then(data => {
         console.log("Line 24: ", this.state);
@@ -46,6 +48,41 @@ class App extends React.Component {
   onClick(e) {
     this.setState({displayForm: true});
   }
+  
+  onChange(e) {
+    e.preventDefault();
+   
+    
+    const options = {
+        // isCaseSensitive: false,
+        // includeScore: false,
+        // shouldSort: true,
+        // includeMatches: false,
+        // findAllMatches: false,
+        // minMatchCharLength: 1,
+        // location: 0,
+        // threshold: 0.6,
+        // distance: 100,
+        // useExtendedSearch: false,
+        // ignoreLocation: false,
+        // ignoreFieldNorm: false,
+        keys: [
+          "title",
+          "description"
+        ]
+      };
+    
+  
+      const fuse = new Fuse(this.state.links, options);
+
+      // Change the pattern
+      const q = e.target.value;
+
+      const result = fuse.search(q).map((i) => i.item);
+    
+      this.setState({links: result}); 
+
+  }
     
   
   render() {
@@ -56,6 +93,7 @@ class App extends React.Component {
           <div className="col">
            <Nav/>
            {this.actionUI()}
+            <input onChange={(e) => this.onChange(e)}/>
            
            <ItemList items={this.state.links}/>
           </div>
