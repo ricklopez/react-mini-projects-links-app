@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react Nav and List Item 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="nav my-3"
+        >
+          <ul
+            className="nav mx-auto"
+          >
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link active"
+                href="#"
+              >
+                Active
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="#"
+              >
+                Link
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link"
+                href="#"
+              >
+                Link
+              </a>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <a
+                className="nav-link disabled"
+                href="#"
+              >
+                Disabled
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          className="actions-bar  my-3"
+        >
+          <button
+            className="btn btn-primary btn-lg btn-block"
+            onClick={[Function]}
+            type="button"
+          >
+            Block level button
+          </button>
+        </div>
+        <input
+          onChange={[Function]}
+        />
+        <div
+          className="links-list  my-3"
+        >
+          <h4
+            className="display-4"
+          >
+            My Links
+          </h4>
+          <ul
+            className="list-group"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

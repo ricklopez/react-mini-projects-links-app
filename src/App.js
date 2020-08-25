@@ -91,7 +91,7 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col">
-           <Nav/>
+           <Nav  data-testid="nav"/>
            {this.actionUI()}
             <input onChange={(e) => this.onChange(e)}/>
            
